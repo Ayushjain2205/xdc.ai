@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ModeContext } from "../../contexts/ModeContext";
 
-function Switch({ onToggle }) {
-  const [checked, setChecked] = useState(false);
+function Switch() {
+  const { mode, setMode } = useContext(ModeContext);
+  const checked = mode === "dev"; // true if mode is dev, false if normal
 
   const handleToggle = () => {
-    const updatedChecked = !checked;
-    setChecked(updatedChecked);
-    // onToggle(updatedChecked);
+    if (mode === "normal") {
+      setMode("dev");
+    } else {
+      setMode("normal");
+    }
   };
 
   return (
@@ -23,8 +27,8 @@ function Switch({ onToggle }) {
         <div
           className={`flex flex-column justify-center items-center absolute inset-y-[4px] left-[4px] w-[33px] h-[33px] rounded-full shadow transition-transform duration-300 transform ${
             checked
-              ? "translate-x-[40px] bg-[#262626]"
-              : "translate-x-0 bg-[#D2FAE3]"
+              ? "translate-x-[40px] bg-[#ffffff]"
+              : "translate-x-0 bg-[#ffffff]"
           }`}
         >
           <svg
@@ -36,21 +40,21 @@ function Switch({ onToggle }) {
           >
             <path
               d="M17 17.5L23 11.5L17 5.5"
-              stroke={checked ? "#D2FAE3" : "#262626"}
+              stroke={checked ? "#000" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M7 5.5L1 11.5L7 17.5"
-              stroke={checked ? "#D2FAE3" : "#262626"}
+              stroke={checked ? "#000" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M14.5 5L9.5 18"
-              stroke={checked ? "#D2FAE3" : "#262626"}
+              stroke={checked ? "#000" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
             />
