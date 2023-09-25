@@ -2,14 +2,15 @@ import Image from "next/image";
 import Layout from "../components/UI/Layout";
 import Navbar from "../components/UI/Navbar";
 import SideBar from "../components/UI/SideBar";
+import ChatScreen from "../components/UI/ChatScreen";
 
 export default function Home() {
   return (
     <Layout>
       <Navbar />
-      <div className="flex flex-1 overflow-hidden mt-[32px]">
+      <div className="flex overflow-hidden mt-[32px]">
         <SideBar />
-        {/* Other components can go here */}
+        <ChatScreen />
       </div>
     </Layout>
   );
