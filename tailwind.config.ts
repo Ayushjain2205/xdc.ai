@@ -6,7 +6,30 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    extend: {},
+  },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          primary: "#D82E34",
+        },
+        dev: {
+          primary: "#000000",
+
+          secondary: "#fff6bf",
+
+          accent: "#68f27f",
+
+          neutral: "#23243e",
+
+          "base-100": "#eae8f2",
+        },
+      },
+    ],
+  },
 };
 export default config;
