@@ -1,4 +1,5 @@
 import React from "react";
+import Switch from "../Functional/Switch";
 
 const SideBar = () => {
   return (
@@ -173,10 +174,16 @@ const SideBar = () => {
         </details>
       </div>
       <div className="flex-none">
-        <button className="btn btn-primary rounded-none bg-primary h-[48px] w-[270px] font-bold text-white">
-          <img src="/icons/plus-circle.svg" alt="" />
-          New Chat
-        </button>
+        <div className="flex flex-col gap-[24px]">
+          <button className="btn btn-primary rounded-none bg-primary h-[48px] w-[270px] font-bold text-white">
+            <img src="/icons/plus-circle.svg" alt="" />
+            New Chat
+          </button>
+          <div className="flex flex-row justify-between items-center">
+            <span className="text-[20px]">Dev mode</span>
+            <Switch />
+          </div>
+        </div>
       </div>
     </div>
   );
