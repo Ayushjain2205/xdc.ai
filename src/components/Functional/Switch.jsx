@@ -3,13 +3,13 @@ import { ModeContext } from "../../contexts/ModeContext";
 
 function Switch() {
   const { mode, setMode } = useContext(ModeContext);
-  const checked = mode === "dev"; // true if mode is dev, false if normal
+  const checked = mode === "dev"; // true if mode is dev, false if light
 
   const handleToggle = () => {
-    if (mode === "normal") {
+    if (mode === "light") {
       setMode("dev");
     } else {
-      setMode("normal");
+      setMode("light");
     }
   };
 

@@ -22,11 +22,8 @@ const config: Config = {
         },
         dev: {
           primary: "#000000",
-
           secondary: "#7A7A7A",
-
           neutral: "#23243e",
-
           "base-100": "#faf3f2",
           "background-color": "#faf3f2",
         },
