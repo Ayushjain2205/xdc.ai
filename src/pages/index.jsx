@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Layout>
       <Navbar />
-      <div className="flex overflow-hidden mt-[32px]">
+      <div className="flex flex-1 overflow-hidden mt-[32px]">
         <SideBar />
         <ChatScreen />
       </div>
