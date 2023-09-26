@@ -80,12 +80,12 @@ const SideBar = () => {
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  I want to buy a NFT
                 </span>
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  I want to scout for NFTs
                 </span>
               </div>
             </div>
@@ -94,7 +94,7 @@ const SideBar = () => {
         <details className="collapse w-[270px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
           <summary className="collapse-title pt-[12px] items-center text-xl font-bold min-h-[48px] px-0 py-0">
             <div className="flex flex-row justify-between">
-              <span className="text-secondary text-[16px]">NFTs</span>
+              <span className="text-secondary text-[16px]">Smart Contract</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -135,7 +135,9 @@ const SideBar = () => {
         <details className="collapse w-[270px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
           <summary className="collapse-title pt-[12px] items-center text-xl font-bold min-h-[48px] px-0 py-0">
             <div className="flex flex-row justify-between">
-              <span className="text-secondary text-[16px]">NFTs</span>
+              <span className="text-secondary text-[16px]">
+                Know about your wallet
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
