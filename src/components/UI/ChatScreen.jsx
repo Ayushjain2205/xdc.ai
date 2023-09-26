@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 
 const UserMessage = ({ message }) => {
   return (
-    <div className="flex flex-row items-start gap-[16px] pb-[24px] mb-[24px] border-b border-[#E7E9EB]">
-      <img src="/images/user-message.svg" alt="User" />
+    <div className="flex flex-row items-start gap-[16px] pb-[16px] mb-[16px]">
+      <img src="/images/user-message.svg" className="h-[36px]" alt="User" />
       <p className="text-[20px] font-bold">{message}</p>
     </div>
   );
@@ -11,9 +11,9 @@ const UserMessage = ({ message }) => {
 
 const AIMessage = ({ message }) => {
   return (
-    <div className=" pb-[24px] mb-[24px] border-b border-[#E7E9EB]">
+    <div className=" pb-[48px] mb-[48px] border-b border-[#E7E9EB]">
       <div className="flex flex-row items-start gap-[16px]">
-        <img src="/images/ai-message.svg" alt="AI" />
+        <img src="/images/ai-message.svg" className="h-[36px]" alt="AI" />
         <p className="text-[16px]">{message}</p>
       </div>
       <div className="flex flex-col gap-[8px] mt-[30px]">
