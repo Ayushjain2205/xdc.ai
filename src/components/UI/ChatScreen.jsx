@@ -6,12 +6,14 @@ const ChatScreen = () => {
   const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
 
   return (
-    <div className="flex flex-col h-full px-[16px]">
+    <div className="flex flex-col flex-1 h-full px-[16px]">
       <div className="flex-1 overflow-y-scroll">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse
-        molestiae, laborum in cupiditate quam recusandae quasi fuga odit fugit
-        velit est aliquid distinctio voluptates non inventore iusto at expedita
-        blanditiis!
+        <div className="flex flex-row">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse
+          molestiae, laborum in cupiditate quam recusandae quasi fuga odit fugit
+          velit est aliquid distinctio voluptates non inventore iusto at
+          expedita blanditiis!
+        </div>
       </div>
       <div className="flex-none">
         <div className="flex flex-row items-center pr-[12px] rounded-[2px] border-[3px] border-[#E7E9EB] bg-transparent w-full h-[64px]">
