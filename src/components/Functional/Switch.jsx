@@ -40,21 +40,21 @@ function Switch() {
           >
             <path
               d="M17 17.5L23 11.5L17 5.5"
-              stroke={checked ? "#000" : "#D34D3E"}
+              stroke={checked ? "#1F1416" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M7 5.5L1 11.5L7 17.5"
-              stroke={checked ? "#000" : "#D34D3E"}
+              stroke={checked ? "#1F1416" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M14.5 5L9.5 18"
-              stroke={checked ? "#000" : "#D34D3E"}
+              stroke={checked ? "#1F1416" : "#D34D3E"}
               strokeWidth="1.5"
               strokeLinecap="round"
             />

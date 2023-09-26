@@ -15,13 +15,13 @@ const config: Config = {
       {
         light: {
           ...require("daisyui/src/theming/themes")["[data-theme=light]"],
-          primary: "#D82E34",
+          primary: "#D34D3E",
           secondary: "#7A7A7A",
           "base-100": "#faf3f2",
           "background-color": "#faf3f2",
         },
         dev: {
-          primary: "#000000",
+          primary: "#1F1416",
           secondary: "#7A7A7A",
           neutral: "#23243e",
           "base-100": "#faf3f2",
