@@ -181,7 +181,7 @@ const SideBar = () => {
             New Chat
           </button>
           <div className="flex flex-row justify-between items-center">
-            <span className="text-[20px]">Dev mode</span>
+            <span className="text-[20px] font-bold">DEV MODE</span>
             <Switch />
           </div>
         </div>
