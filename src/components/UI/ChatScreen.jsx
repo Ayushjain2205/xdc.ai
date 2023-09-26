@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const UserMessage = ({ message }) => {
   return (
@@ -49,6 +49,14 @@ const ChatScreen = () => {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
 
   const handleSendMessage = () => {
@@ -74,6 +82,7 @@ const ChatScreen = () => {
             return null;
           }
         })}
+        <div ref={messagesEndRef}></div>
       </div>
       <div className="flex-none">
         <div className="flex flex-row items-center pr-[12px] rounded-[2px] border-[3px] border-[#E7E9EB] bg-transparent w-full h-[64px]">
