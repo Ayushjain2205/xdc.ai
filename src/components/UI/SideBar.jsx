@@ -1,7 +1,7 @@
 import React from "react";
 import Switch from "../Functional/Switch";
 
-const SideBar = () => {
+const SideBar = ({ onClearMessages }) => {
   return (
     <div className="flex flex-col min-w-[294px] pr-[24px] h-full overflow-y-scroll border-r-[3px] border-[#E7E9EB]">
       <div className="flex-1 overflow-y-scroll">
@@ -178,7 +178,10 @@ const SideBar = () => {
       </div>
       <div className="flex-none">
         <div className="flex flex-col gap-[24px]">
-          <button className="btn btn-primary rounded-none bg-primary h-[48px] w-[270px] font-bold text-white">
+          <button
+            className="btn btn-primary rounded-none bg-primary h-[48px] w-[270px] font-bold text-white"
+            onClick={onClearMessages}
+          >
             <img src="/icons/plus-circle.svg" alt="" />
             New Chat
           </button>

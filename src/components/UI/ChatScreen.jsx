@@ -2,9 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
 
-const ChatScreen = () => {
+const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState([]);
 
   const messagesEndRef = useRef(null);
 
