@@ -15,7 +15,14 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: query }],
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a AI agent for The Tron Blockchain. You are supposed to answer questions keeping this in mind.",
+          },
+          { role: "user", content: query },
+        ],
       }),
     };
 
