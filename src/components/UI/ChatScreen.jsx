@@ -5,6 +5,14 @@ import Test from "./Test";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
+  const [mintMessageIndex, setMintMessageIndex] = useState(0);
+
+  const mintingMessages = [
+    { text: "Initializing minting process...", ChildComponent: null },
+    { text: "Connecting to the blockchain...", ChildComponent: null },
+    { text: "Minting NFT...", ChildComponent: null },
+    { text: "NFT minted successfully!", ChildComponent: Test },
+  ];
 
   const messagesEndRef = useRef(null);
 
@@ -15,18 +23,26 @@ const ChatScreen = ({ messages, setMessages }) => {
   }, [messages]);
 
   const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
-
   const mintNFT = () => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        sender: "ai",
-        text: "Lets mint NFT ",
-        showResource: false,
-        showPrompt: false,
-        ChildComponent: Test,
-      },
-    ]);
+    // Check to avoid index out of bound
+    if (mintMessageIndex < mintingMessages.length) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: mintingMessages[mintMessageIndex].text,
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: mintingMessages[mintMessageIndex].ChildComponent,
+        },
+      ]);
+
+      // Increment the message index for the next interaction
+      setMintMessageIndex((prevIndex) => prevIndex + 1);
+    } else {
+      // Optionally, reset the minting process or handle completion logic here
+      console.log("Minting process complete!");
+    }
   };
 
   const handleSendMessage = () => {
