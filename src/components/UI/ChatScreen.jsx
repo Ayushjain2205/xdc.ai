@@ -1,17 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
-import Test from "./Test";
+import { GenerateNFT, DisplayNFT } from "../Templates";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
   const [mintMessageIndex, setMintMessageIndex] = useState(0);
 
   const mintingMessages = [
-    { text: "Initializing minting process...", ChildComponent: null },
-    { text: "Connecting to the blockchain...", ChildComponent: null },
-    { text: "Minting NFT...", ChildComponent: null },
-    { text: "NFT minted successfully!", ChildComponent: Test },
+    {
+      text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
+      ChildComponent: null,
+    },
+    {
+      text: "Here is your NFT. Enter “MINT” to Confirm NFT",
+      ChildComponent: GenerateNFT,
+    },
+    { text: "Input Name : '' & Price : '' for your NFT", ChildComponent: null },
+    { text: "Yayyy, you just minted a NFT!", ChildComponent: DisplayNFT },
   ];
 
   const messagesEndRef = useRef(null);
