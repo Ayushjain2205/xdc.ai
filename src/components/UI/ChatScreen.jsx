@@ -103,10 +103,10 @@ const ChatScreen = ({ messages, setMessages }) => {
         ...prevMessages,
         { sender: "user", text: inputValue },
       ]);
-      //mintNFT();
+      mintNFT();
       //smartContract();
       //graph();
-      walletHealth();
+      //walletHealth();
       setInputValue("");
     }
   };
