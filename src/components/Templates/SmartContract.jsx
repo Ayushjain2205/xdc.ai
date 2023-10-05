@@ -145,13 +145,13 @@ interface IERC20 {
 
 const SmartContract = () => {
   return (
-    <div className="flex w-[500px]">
+    <div className="max-h-[500px] overflow-scroll">
       <CopyBlock
         language="js"
         text={contract}
         codeBlock
         theme={dracula}
-        showLineNumbers={false}
+        showLineNumbers={true}
       />
     </div>
   );
