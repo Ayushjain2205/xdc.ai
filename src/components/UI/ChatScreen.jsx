@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
-import { GenerateNFT, DisplayNFT } from "../Templates";
+import { GenerateNFT, DisplayNFT, SmartContract } from "../Templates";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
@@ -29,6 +29,7 @@ const ChatScreen = ({ messages, setMessages }) => {
   }, [messages]);
 
   const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
+
   const mintNFT = () => {
     // Check to avoid index out of bound
     if (mintMessageIndex < mintingMessages.length) {
@@ -51,13 +52,27 @@ const ChatScreen = ({ messages, setMessages }) => {
     }
   };
 
+  const smartContract = () => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        sender: "ai",
+        text: "Sure, below is a simple example of a lottery smart contract written in Solidity, which is a programming language used for implementing smart contracts on the Ethereum blockchain. This smart contract allows users to enter a lottery by sending some ether and, when the lottery owner decides, to randomly select a winner who will receive all the funds collected.",
+        showResource: false,
+        showPrompt: false,
+        ChildComponent: SmartContract,
+      },
+    ]);
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "user", text: inputValue },
       ]);
-      mintNFT();
+      //mintNFT();
+      smartContract();
       setInputValue("");
     }
   };
