@@ -16,19 +16,26 @@ const ChatScreen = ({ messages, setMessages }) => {
 
   const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
 
+  const mintNFT = () => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        sender: "ai",
+        text: "Lets mint NFT ",
+        showResource: false,
+        showPrompt: false,
+        ChildComponent: Test,
+      },
+    ]);
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "user", text: inputValue },
-        {
-          sender: "ai",
-          text: "AI response for: " + inputValue,
-          showResource: true,
-          showPrompt: true,
-          ChildComponent: Test,
-        },
       ]);
+      mintNFT();
       setInputValue("");
     }
   };
