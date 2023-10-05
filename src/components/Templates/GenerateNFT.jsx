@@ -3,7 +3,13 @@ import React from "react";
 const GenerateNFT = () => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="h-[296px] w-[489px] border border-black"></div>
+      <div>
+        <img
+          className="h-[296px] w-[489px] border border-black"
+          src="/images/nft.png"
+          alt=""
+        />
+      </div>
       <button className="h-[48px] w-[489px] border-2 border-[#D34D3E] flex items-center justify-center gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
