@@ -59,13 +59,25 @@ const ChatScreen = ({ messages, setMessages }) => {
   };
 
   const smartContract = () => {
+    const relatedPrompts = [
+      { prompt: "How does a smart contract work?" },
+      { prompt: "What is Solidity?" },
+      { prompt: "How to deploy a smart contract?" },
+    ];
+    const resources = [
+      { name: "How does a smart contract work?" },
+      { name: "What is Solidity?" },
+      { name: "How to deploy a smart contract?" },
+    ];
     setMessages((prevMessages) => [
       ...prevMessages,
       {
         sender: "ai",
         text: "Sure, below is a simple example of a lottery smart contract written in Solidity, which is a programming language used for implementing smart contracts on the Ethereum blockchain. This smart contract allows users to enter a lottery by sending some ether and, when the lottery owner decides, to randomly select a winner who will receive all the funds collected.",
-        showResource: false,
-        showPrompt: false,
+        showResource: true,
+        showPrompt: true,
+        relatedPrompts: relatedPrompts,
+        resources: resources,
         ChildComponent: SmartContract,
       },
     ]);
@@ -125,6 +137,8 @@ const ChatScreen = ({ messages, setMessages }) => {
                 showResource={message.showResource}
                 showPrompt={message.showPrompt}
                 ChildComponent={message.ChildComponent}
+                relatedPrompts={message.relatedPrompts}
+                resources={message.resources}
               />
             );
           } else {

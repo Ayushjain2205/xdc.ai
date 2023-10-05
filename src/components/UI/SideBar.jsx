@@ -31,17 +31,17 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[8px]">
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  How to connect Tron Link?
                 </span>
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  Token Performance
                 </span>
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  What is TRC 10?
                 </span>
               </div>
             </div>
