@@ -11,10 +11,12 @@ const DisplayNFT = () => {
         />
       </div>
       <div>
-        <p>Name : </p>
-        <p>Price : </p>
+        <p>Name :Snow Capped Mountains </p>
+        <p>Price : $9</p>
 
-        <p className="mt-[20px]">Ownership address : </p>
+        <p className="mt-[20px]">
+          Ownership address : TSzW16CE9Zta1TbaKND44b8HkSwpqzNAra
+        </p>
       </div>
     </div>
   );

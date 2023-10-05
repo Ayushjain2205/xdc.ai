@@ -1,145 +1,85 @@
 import React from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
 const contract = `// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.0;
 
-contract CSAMM {
-    IERC20 public immutable token0;
-    IERC20 public immutable token1;
-
-    uint public reserve0;
-    uint public reserve1;
-
-    uint public totalSupply;
-    mapping(address => uint) public balanceOf;
-
-    constructor(address _token0, address _token1) {
-        // NOTE: This contract assumes that token0 and token1
-        // both have same decimals
-        token0 = IERC20(_token0);
-        token1 = IERC20(_token1);
-    }
-
-    function _mint(address _to, uint _amount) private {
-        balanceOf[_to] += _amount;
-        totalSupply += _amount;
-    }
-
-    function _burn(address _from, uint _amount) private {
-        balanceOf[_from] -= _amount;
-        totalSupply -= _amount;
-    }
-
-    function _update(uint _res0, uint _res1) private {
-        reserve0 = _res0;
-        reserve1 = _res1;
-    }
-
-    function swap(address _tokenIn, uint _amountIn) external returns (uint amountOut) {
-        require(
-            _tokenIn == address(token0) || _tokenIn == address(token1),
-            "invalid token"
-        );
-
-        bool isToken0 = _tokenIn == address(token0);
-
-        (IERC20 tokenIn, IERC20 tokenOut, uint resIn, uint resOut) = isToken0
-            ? (token0, token1, reserve0, reserve1)
-            : (token1, token0, reserve1, reserve0);
-
-        tokenIn.transferFrom(msg.sender, address(this), _amountIn);
-        uint amountIn = tokenIn.balanceOf(address(this)) - resIn;
-
-        // 0.3% fee
-        amountOut = (amountIn * 997) / 1000;
-
-        (uint res0, uint res1) = isToken0
-            ? (resIn + amountIn, resOut - amountOut)
-            : (resOut - amountOut, resIn + amountIn);
-
-        _update(res0, res1);
-        tokenOut.transfer(msg.sender, amountOut);
-    }
-
-    function addLiquidity(uint _amount0, uint _amount1) external returns (uint shares) {
-        token0.transferFrom(msg.sender, address(this), _amount0);
-        token1.transferFrom(msg.sender, address(this), _amount1);
-
-        uint bal0 = token0.balanceOf(address(this));
-        uint bal1 = token1.balanceOf(address(this));
-
-        uint d0 = bal0 - reserve0;
-        uint d1 = bal1 - reserve1;
-
-        /*
-        a = amount in
-        L = total liquidity
-        s = shares to mint
-        T = total supply
-
-        s should be proportional to increase from L to L + a
-        (L + a) / L = (T + s) / T
-
-        s = a * T / L
-        */
-        if (totalSupply > 0) {
-            shares = ((d0 + d1) * totalSupply) / (reserve0 + reserve1);
-        } else {
-            shares = d0 + d1;
-        }
-
-        require(shares > 0, "shares = 0");
-        _mint(msg.sender, shares);
-
-        _update(bal0, bal1);
-    }
-
-    function removeLiquidity(uint _shares) external returns (uint d0, uint d1) {
-        /*
-        a = amount out
-        L = total liquidity
-        s = shares
-        T = total supply
-
-        a / L = s / T
-
-        a = L * s / T
-          = (reserve0 + reserve1) * s / T
-        */
-        d0 = (reserve0 * _shares) / totalSupply;
-        d1 = (reserve1 * _shares) / totalSupply;
-
-        _burn(msg.sender, _shares);
-        _update(reserve0 - d0, reserve1 - d1);
-
-        if (d0 > 0) {
-            token0.transfer(msg.sender, d0);
-        }
-        if (d1 > 0) {
-            token1.transfer(msg.sender, d1);
-        }
-    }
+interface ITRC20 {
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function allowance(address owner, address spender) external view returns (uint256);
+    function approve(address spender, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-interface IERC20 {
-    function totalSupply() external view returns (uint);
+contract BobaCoin is ITRC20 {
+    string public constant name = "Boba Coin";
+    string public constant symbol = "BOBA";
+    uint8 public constant decimals = 6;
+    
+    mapping (address => uint256) private _balances;
+    mapping (address => mapping (address => uint256)) private _allowances;
+    uint256 private _totalSupply;
 
-    function balanceOf(address account) external view returns (uint);
+    constructor(uint256 initialSupply) {
+        _mint(msg.sender, initialSupply);
+    }
 
-    function transfer(address recipient, uint amount) external returns (bool);
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+    
+    function balanceOf(address account) public view override returns (uint256) {
+        return _balances[account];
+    }
 
-    function allowance(address owner, address spender) external view returns (uint);
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        _transfer(msg.sender, recipient, amount);
+        return true;
+    }
 
-    function approve(address spender, uint amount) external returns (bool);
+    function allowance(address owner, address spender) public view override returns (uint256) {
+        return _allowances[owner][spender];
+    }
 
-    function transferFrom(
-        address sender,
-        address recipient,
-        uint amount
-    ) external returns (bool);
+    function approve(address spender, uint256 amount) public override returns (bool) {
+        _approve(msg.sender, spender, amount);
+        return true;
+    }
 
-    event Transfer(address indexed from, address indexed to, uint amount);
-    event Approval(address indexed owner, address indexed spender, uint amount);
+    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+        _transfer(sender, recipient, amount);
+        _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
+        return true;
+    }
+
+    function _transfer(address sender, address recipient, uint256 amount) internal {
+        require(sender != address(0), "Transfer from the zero address");
+        require(recipient != address(0), "Transfer to the zero address");
+        require(_balances[sender] >= amount, "Insufficient balance");
+        
+        _balances[sender] -= amount;
+        _balances[recipient] += amount;
+        emit Transfer(sender, recipient, amount);
+    }
+
+    function _approve(address owner, address spender, uint256 amount) internal {
+        require(owner != address(0), "Approve from the zero address");
+        require(spender != address(0), "Approve to the zero address");
+        
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
+    }
+
+    function _mint(address account, uint256 amount) internal {
+        require(account != address(0), "Mint to the zero address");
+        
+        _totalSupply += amount;
+        _balances[account] += amount;
+        emit Transfer(address(0), account, amount);
+    }
 }
 `;
 

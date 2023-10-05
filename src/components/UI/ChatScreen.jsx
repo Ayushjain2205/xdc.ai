@@ -41,19 +41,27 @@ const ChatScreen = ({ messages, setMessages }) => {
   const mintNFT = () => {
     // Check to avoid index out of bound
     if (mintMessageIndex < mintingMessages.length) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          sender: "ai",
-          text: mintingMessages[mintMessageIndex].text,
-          showResource: false,
-          showPrompt: false,
-          ChildComponent: mintingMessages[mintMessageIndex].ChildComponent,
-        },
-      ]);
+      setLoading(true);
 
-      // Increment the message index for the next interaction
-      setMintMessageIndex((prevIndex) => prevIndex + 1);
+      setTimeout(() => {
+        // Update the messages
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "ai",
+            text: mintingMessages[mintMessageIndex].text,
+            showResource: false,
+            showPrompt: false,
+            ChildComponent: mintingMessages[mintMessageIndex].ChildComponent,
+          },
+        ]);
+
+        // Increment the message index for the next interaction
+        setMintMessageIndex((prevIndex) => prevIndex + 1);
+
+        // Deactivate the loader
+        setLoading(false);
+      }, 2000);
     } else {
       // Optionally, reset the minting process or handle completion logic here
       console.log("Minting process complete!");
@@ -62,30 +70,48 @@ const ChatScreen = ({ messages, setMessages }) => {
 
   const smartContract = () => {
     const relatedPrompts = [
-      { prompt: "How does a smart contract work?" },
-      { prompt: "What is Solidity?" },
-      { prompt: "How to deploy a smart contract?" },
+      { prompt: "Generate a TRC 10 smart contract" },
+      { prompt: "Generate a TRC 721 smart contract" },
     ];
     const resources = [
       { name: "How does a smart contract work?" },
       { name: "What is Solidity?" },
       { name: "How to deploy a smart contract?" },
     ];
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        sender: "ai",
-        text: "Sure, below is a simple example of a lottery smart contract written in Solidity, which is a programming language used for implementing smart contracts on the Ethereum blockchain. This smart contract allows users to enter a lottery by sending some ether and, when the lottery owner decides, to randomly select a winner who will receive all the funds collected.",
-        showResource: true,
-        showPrompt: true,
-        relatedPrompts: relatedPrompts,
-        resources: resources,
-        ChildComponent: SmartContract,
-      },
-    ]);
+
+    // Set loading to true to show the loader
+    setLoading(true);
+
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "Creating a TRC-20 token on the TRON blockchain involves writing a smart contract, typically in the Solidity programming language, and then deploying that contract to the TRON blockchain. Below is a simple example of how a basic TRC-20 token might be structured in Solidity. Please note that creating a token and deploying a smart contract onto a blockchain should be done with caution and ideally with the guidance of a blockchain developer, as there are many nuances and potential security issues to be aware of. Here's a simplified version of what a TRC-20 contract might look like:",
+          showResource: true,
+          showPrompt: true,
+          relatedPrompts: relatedPrompts,
+          resources: resources,
+          ChildComponent: SmartContract,
+        },
+      ]);
+
+      // Set loading to false to hide the loader
+      setLoading(false);
+    }, 5000); // 5000ms = 5 seconds
   };
 
   const dev = async (userMessage) => {
+    const relatedPrompts = [
+      { prompt: "How to connect to tronWeb" },
+      { prompt: "How to deploy a smart contract?" },
+    ];
+    const resources = [
+      { name: "Tron Docs" },
+      { name: "Decrypt.co" },
+      { name: "Tron DAO" },
+    ];
     try {
       setLoading(true);
       const response = await fetch("/api/getAnswer", {
@@ -104,8 +130,10 @@ const ChatScreen = ({ messages, setMessages }) => {
           {
             sender: "ai",
             text: data.message,
-            showResource: false,
-            showPrompt: false,
+            showResource: true,
+            showPrompt: true,
+            relatedPrompts: relatedPrompts,
+            resources: resources,
             ChildComponent: null,
           },
         ]);
@@ -120,29 +148,49 @@ const ChatScreen = ({ messages, setMessages }) => {
   };
 
   const graph = () => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        sender: "ai",
-        text: "This is a graphical representation",
-        showResource: false,
-        showPrompt: false,
-        ChildComponent: Graph,
-      },
-    ]);
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "This is a graphical representation",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: Graph,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 3000); // 4000ms = 4 seconds
   };
 
   const walletHealth = () => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        sender: "ai",
-        text: "Let's check your wallet health!",
-        showResource: false,
-        showPrompt: false,
-        ChildComponent: WalletHealth,
-      },
-    ]);
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "Let's check your wallet health!",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: WalletHealth,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
   };
 
   const handleSendMessage = () => {

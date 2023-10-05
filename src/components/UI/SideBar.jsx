@@ -116,17 +116,17 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[4px]">
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  Help me generate a TRC 10
                 </span>
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  Help me generate a TRC 20
                 </span>
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  Help me generate a TRC 721
                 </span>
               </div>
             </div>
@@ -159,17 +159,7 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[4px]">
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
-                </span>
-              </div>
-              <div className="flex flex-row items-center h-[36px]">
-                <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
-                </span>
-              </div>
-              <div className="flex flex-row items-center h-[36px]">
-                <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  I want to generate a NFT
+                  Tell me about my Wallet Health
                 </span>
               </div>
             </div>
