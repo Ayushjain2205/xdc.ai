@@ -19,7 +19,7 @@ const ChatScreen = ({ messages, setMessages }) => {
       ChildComponent: null,
     },
     {
-      text: "Here is your NFT. Enter “MINT” to Confirm NFT",
+      text: "Here is your NFT. Enter **MINT** to Confirm NFT",
       ChildComponent: GenerateNFT,
     },
     { text: "Input Name : '' & Price : '' for your NFT", ChildComponent: null },
