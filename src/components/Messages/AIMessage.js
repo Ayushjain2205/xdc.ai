@@ -33,7 +33,9 @@ const AIMessage = ({
         </div>
         <div className="flex flex-col gap-[12px] flex-grow">
           <p className="text-[16px]">{message}</p>
-          <div> {ChildComponent && <ChildComponent />}</div>
+          <div className="mt-[20px]">
+            {ChildComponent && <ChildComponent />}
+          </div>
         </div>
       </div>
 
