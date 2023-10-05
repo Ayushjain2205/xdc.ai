@@ -83,6 +83,37 @@ const ChatScreen = ({ messages, setMessages }) => {
     ]);
   };
 
+  const dev = async (userMessage) => {
+    try {
+      const response = await fetch("/api/getAnswer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: userMessage }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "ai",
+            text: data.message,
+            showResource: false,
+            showPrompt: false,
+            ChildComponent: null,
+          },
+        ]);
+      } else {
+        console.error("API request failed", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred", error);
+    }
+  };
+
   const graph = () => {
     setMessages((prevMessages) => [
       ...prevMessages,
@@ -115,7 +146,8 @@ const ChatScreen = ({ messages, setMessages }) => {
         ...prevMessages,
         { sender: "user", text: inputValue },
       ]);
-      mintNFT();
+      dev(inputValue);
+      //mintNFT();
       //smartContract();
       //graph();
       //walletHealth();
