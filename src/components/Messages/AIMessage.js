@@ -7,6 +7,7 @@ const AIMessage = ({
   relatedPrompts = [],
   showResource = false,
   showPrompt = false,
+  ChildComponent = null,
 }) => {
   const { mode } = useContext(ModeContext);
   const backgroundColor = mode === "dev" ? "#1F1416" : "#fff";
@@ -30,8 +31,12 @@ const AIMessage = ({
         >
           <img src="/icons/tron.svg" className="h-[16px]" alt="AI" />
         </div>
-        <p className="text-[16px]">{message}</p>
+        <div className="flex flex-col gap-[12px]">
+          <p className="text-[16px]">{message}</p>
+          <div> {ChildComponent && <ChildComponent />}</div>
+        </div>
       </div>
+
       {showResource && (
         <div className="flex flex-col gap-[8px] mt-[30px]">
           <p className="text-[16px] opacity-40">Resources:</p>

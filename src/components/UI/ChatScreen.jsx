@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
+import Test from "./Test";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
@@ -25,6 +26,7 @@ const ChatScreen = ({ messages, setMessages }) => {
           text: "AI response for: " + inputValue,
           showResource: true,
           showPrompt: true,
+          ChildComponent: Test,
         },
       ]);
       setInputValue("");
@@ -44,6 +46,7 @@ const ChatScreen = ({ messages, setMessages }) => {
                 message={message.text}
                 showResource={message.showResource}
                 showPrompt={message.showPrompt}
+                ChildComponent={message.ChildComponent}
               />
             );
           } else {
