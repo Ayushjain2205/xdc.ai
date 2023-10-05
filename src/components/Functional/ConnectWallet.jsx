@@ -23,6 +23,11 @@ function ConnectWallet() {
     setTronWeb(null);
   };
 
+  const getShortAddress = (address) => {
+    if (!address) return "";
+    return address.slice(0, 6) + "...";
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       {tronWeb ? (
@@ -33,14 +38,14 @@ function ConnectWallet() {
                 <img src="/icons/dude.svg" alt="Avatar" />
               </div>
               <span className="text-gray-700">
-                {tronWeb.defaultAddress.base58}
+                {getShortAddress(tronWeb.defaultAddress.base58)}
               </span>
             </div>
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Content>
               <button
-                className="btn btn-primary rounded-none bg-primary h-[48px] w-[192px] font-bold text-white"
+                className="btn btn-primary rounded-none bg-primary h-[48px] w-[192px] font-bold text-white mt-[10px] mr-[32px]"
                 onClick={handleDisconnect}
               >
                 Disconnect Wallet
