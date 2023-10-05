@@ -20,7 +20,12 @@ const ChatScreen = ({ messages, setMessages }) => {
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "user", text: inputValue },
-        { sender: "ai", text: "AI response for: " + inputValue }, // This is a dummy response
+        {
+          sender: "ai",
+          text: "AI response for: " + inputValue,
+          showResource: true,
+          showPrompt: true,
+        },
       ]);
       setInputValue("");
     }
@@ -33,7 +38,14 @@ const ChatScreen = ({ messages, setMessages }) => {
           if (message.sender === "user") {
             return <UserMessage key={index} message={message.text} />;
           } else if (message.sender === "ai") {
-            return <AIMessage key={index} message={message.text} />;
+            return (
+              <AIMessage
+                key={index}
+                message={message.text}
+                showResource={message.showResource}
+                showPrompt={message.showPrompt}
+              />
+            );
           } else {
             return null;
           }
