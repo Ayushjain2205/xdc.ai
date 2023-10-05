@@ -1,5 +1,6 @@
 import React from "react";
 import ConnectWallet from "../Functional/ConnectWallet";
+import Realtime from "../Functional/Realtime";
 
 const Navbar = () => {
   return (
@@ -8,9 +9,7 @@ const Navbar = () => {
         <span className="text-[32px] font-bold text-primary">TRON.ai</span>
       </div>
       <div className="flex flex-row gap-[24px]">
-        {/* <button className="btn btn-primary rounded-none bg-primary h-[48px] w-[192px] font-bold text-white">
-          Connect wallet
-        </button> */}
+        <Realtime />
         <ConnectWallet />
       </div>
     </nav>
