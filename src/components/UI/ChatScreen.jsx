@@ -1,7 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
-import { GenerateNFT, DisplayNFT, SmartContract, Graph } from "../Templates";
+import {
+  GenerateNFT,
+  DisplayNFT,
+  SmartContract,
+  Graph,
+  WalletHealth,
+} from "../Templates";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
@@ -78,6 +84,19 @@ const ChatScreen = ({ messages, setMessages }) => {
     ]);
   };
 
+  const walletHealth = () => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        sender: "ai",
+        text: "Let's check your wallet health!",
+        showResource: false,
+        showPrompt: false,
+        ChildComponent: WalletHealth,
+      },
+    ]);
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
@@ -86,7 +105,8 @@ const ChatScreen = ({ messages, setMessages }) => {
       ]);
       //mintNFT();
       //smartContract();
-      graph();
+      //graph();
+      walletHealth();
       setInputValue("");
     }
   };
