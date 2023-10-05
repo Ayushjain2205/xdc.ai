@@ -8,8 +8,10 @@ import {
   Graph,
   WalletHealth,
 } from "../Templates";
+import Loader from "../Functional/Loader";
 
 const ChatScreen = ({ messages, setMessages }) => {
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [mintMessageIndex, setMintMessageIndex] = useState(0);
 
@@ -85,6 +87,7 @@ const ChatScreen = ({ messages, setMessages }) => {
 
   const dev = async (userMessage) => {
     try {
+      setLoading(true);
       const response = await fetch("/api/getAnswer", {
         method: "POST",
         headers: {
@@ -111,6 +114,8 @@ const ChatScreen = ({ messages, setMessages }) => {
       }
     } catch (error) {
       console.error("An error occurred", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -177,6 +182,11 @@ const ChatScreen = ({ messages, setMessages }) => {
             return null;
           }
         })}
+        {loading && (
+          <div className="flex justify-center items-center p-4">
+            <Loader />
+          </div>
+        )}
         <div ref={messagesEndRef}></div>
       </div>
       <div className="flex-none">
