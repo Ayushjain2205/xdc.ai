@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
-import { GenerateNFT, DisplayNFT, SmartContract } from "../Templates";
+import { GenerateNFT, DisplayNFT, SmartContract, Graph } from "../Templates";
 
 const ChatScreen = ({ messages, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
@@ -65,6 +65,19 @@ const ChatScreen = ({ messages, setMessages }) => {
     ]);
   };
 
+  const graph = () => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        sender: "ai",
+        text: "This is a graphical representation",
+        showResource: false,
+        showPrompt: false,
+        ChildComponent: Graph,
+      },
+    ]);
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
@@ -72,7 +85,8 @@ const ChatScreen = ({ messages, setMessages }) => {
         { sender: "user", text: inputValue },
       ]);
       //mintNFT();
-      smartContract();
+      //smartContract();
+      graph();
       setInputValue("");
     }
   };
