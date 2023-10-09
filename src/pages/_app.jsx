@@ -10,12 +10,13 @@ import {
   localWallet,
   embeddedWallet,
 } from "@thirdweb-dev/react";
+import { XdcApothemNetwork } from "@thirdweb-dev/chains";
 
 export default function App({ Component, pageProps }) {
   const [mode, setMode] = useState("normal");
   return (
     <ThirdwebProvider
-      activeChain="ethereum"
+      activeChain={XdcApothemNetwork}
       clientId="d6fcba1f4ea6bc6fc9bdbdc26466a30f"
       supportedWallets={[
         metamaskWallet({ recommended: true }),

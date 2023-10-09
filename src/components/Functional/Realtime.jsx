@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 const Realtime = ({ isDevMode }) => {
   const [data, setData] = useState([
-    ["Volume", "$ 9,164.41 B"],
-    ["Total Accounts", "188,097,228"],
-    ["Transactions count", "6,509,879,296"],
-    ["Block height", "55,285,772"],
+    ["XDC/USD", "$ 0.049"],
+    ["Total Accounts", "214,476"],
+    ["Transactions count", "44,761,827"],
+    ["Block height", "55,435,720"],
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
