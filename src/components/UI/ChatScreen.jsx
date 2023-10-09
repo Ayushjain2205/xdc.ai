@@ -36,7 +36,7 @@ const ChatScreen = ({ messages, setMessages }) => {
     }
   }, [messages]);
 
-  const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
+  const svgFillColor = inputValue ? "#16284B" : "#E7E9EB";
 
   const mintNFT = () => {
     // Check to avoid index out of bound

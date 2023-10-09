@@ -11,7 +11,7 @@ const AIMessage = ({
   ChildComponent = null,
 }) => {
   const { mode } = useContext(ModeContext);
-  const backgroundColor = mode === "dev" ? "#1F1416" : "#fff";
+  const backgroundColor = mode === "dev" ? "#16284B" : "#fff";
 
   const displayedResources =
     resources.length === 0
