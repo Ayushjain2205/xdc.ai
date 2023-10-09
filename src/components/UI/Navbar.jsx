@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center h-[56px]">
       <div className="flex-1">
-        <span className="text-[32px] font-bold text-primary">TRON.ai</span>
+        <span className="text-[32px] font-bold text-primary">XDC.ai</span>
       </div>
       <div className="flex flex-row gap-[24px]">
         <Realtime />
