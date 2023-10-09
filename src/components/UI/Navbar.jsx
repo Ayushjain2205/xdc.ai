@@ -1,5 +1,6 @@
 import React from "react";
-import ConnectWallet from "../Functional/ConnectWallet";
+// import ConnectWallet from "../Functional/ConnectWallet";
+import { ConnectWallet } from "@thirdweb-dev/react";
 import Realtime from "../Functional/Realtime";
 
 const Navbar = () => {
@@ -10,7 +11,12 @@ const Navbar = () => {
       </div>
       <div className="flex flex-row gap-[24px]">
         <Realtime />
-        <ConnectWallet />
+        {/* <ConnectWallet /> */}
+        <ConnectWallet
+          theme={"light"}
+          switchToActiveChain={true}
+          modalSize={"wide"}
+        />
       </div>
     </nav>
   );
