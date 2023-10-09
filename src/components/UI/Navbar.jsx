@@ -16,6 +16,7 @@ const Navbar = () => {
           theme={"light"}
           switchToActiveChain={true}
           modalSize={"wide"}
+          className="connect-wallet"
         />
       </div>
     </nav>
