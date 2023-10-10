@@ -4,7 +4,7 @@ import moment from "moment";
 export default async function handler(req, res) {
   try {
     const response = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/tron/market_chart",
+      "https://api.coingecko.com/api/v3/coins/xdce-crowd-sale/market_chart",
       {
         params: {
           vs_currency: "usd",

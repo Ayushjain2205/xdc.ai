@@ -19,7 +19,7 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "You are a AI agent for The Tron Blockchain. You are supposed to answer questions keeping this in mind.",
+              "You are a AI agent for The XDC Blockchain. You are supposed to answer questions keeping this in mind.",
           },
           { role: "user", content: query },
         ],

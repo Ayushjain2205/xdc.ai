@@ -16,7 +16,7 @@ const Graph = () => {
     const fetchData = async () => {
       try {
         // Fetch data from Next.js API route
-        const response = await axios.get("/api/tronData");
+        const response = await axios.get("/api/xdcData");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -32,7 +32,7 @@ const Graph = () => {
         <Line
           type="monotone"
           dataKey="price"
-          stroke="#D34D3E"
+          stroke="#16284b"
           strokeWidth={2}
           strokeLinejoin="round"
         />
