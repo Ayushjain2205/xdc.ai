@@ -29,6 +29,10 @@ body {
   height: 48px !important;
 }
 
+.connect-wallet[data-theme="light"] {
+  background-color: #07adcd !important;
+}
+
 .connect-wallet .tw-connected-wallet__address {
   color: #f8fbfc !important;
 }
