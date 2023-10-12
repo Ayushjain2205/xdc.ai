@@ -22,15 +22,11 @@ body {
 }
 
 .connect-wallet {
-  background-color: #16284b !important;
+  background-color: #07adcd !important;
   font-weight: bold !important;
   border-radius: 0px !important;
   color: #f8fbfc !important;
   height: 48px !important;
-}
-
-.connect-wallet[data-theme="light"] {
-  background-color: #07adcd !important;
 }
 
 .connect-wallet .tw-connected-wallet__address {
@@ -39,4 +35,8 @@ body {
 
 .connect-wallet .tw-connected-wallet__balance {
   color: #f8fbfc90 !important;
+}
+
+.connect-wallet-dev {
+  background-color: #16284b !important;
 }
