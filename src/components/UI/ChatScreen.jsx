@@ -70,8 +70,8 @@ const ChatScreen = ({ messages, setMessages }) => {
 
   const smartContract = () => {
     const relatedPrompts = [
-      { prompt: "Generate a TRC 10 smart contract" },
-      { prompt: "Generate a TRC 721 smart contract" },
+      { prompt: "Generate a ERC 1155 smart contract" },
+      { prompt: "Generate a ERC 721 smart contract" },
     ];
     const resources = [
       { name: "How does a smart contract work?" },
@@ -200,8 +200,8 @@ const ChatScreen = ({ messages, setMessages }) => {
         { sender: "user", text: inputValue },
       ]);
       //dev(inputValue);
-      mintNFT();
-      //smartContract();
+      //mintNFT();
+      smartContract();
       //graph();
       //walletHealth();
       setInputValue("");

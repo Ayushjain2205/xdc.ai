@@ -1,84 +1,67 @@
 import React from "react";
 import { CopyBlock, dracula } from "react-code-blocks";
-const contract = `// SPDX-License-Identifier: MIT
+const contract = `/// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-interface ITRC20 {
-    function totalSupply() external view returns (uint256);
-    function balanceOf(address account) external view returns (uint256);
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function approve(address spender, uint256 amount) external returns (bool);
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-}
+import "@openzeppelin/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BobaCoin is ITRC20 {
-    string public constant name = "Boba Coin";
-    string public constant symbol = "BOBA";
-    uint8 public constant decimals = 6;
-    
-    mapping (address => uint256) private _balances;
-    mapping (address => mapping (address => uint256)) private _allowances;
-    uint256 private _totalSupply;
+contract BobaCoin is ERC20PresetMinterPauser, Ownable {
+    event TokensLocked(address indexed account, uint256 amount, uint256 releaseTime);
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    constructor(uint256 initialSupply) {
-        _mint(msg.sender, initialSupply);
+    mapping(address => uint256) private _lockedBalances;
+    mapping(address => uint256) private _releaseTimes;
+
+    constructor(
+        uint256 initialSupply,
+        uint256 lockDurationDays
+    ) ERC20PresetMinterPauser("Boba Coin", "BOBA") {
+        _mint(msg.sender, initialSupply * 10 ** uint256(decimals()));
+        _addMinter(msg.sender);
+        _addPauser(msg.sender);
+
+        uint256 lockDuration = lockDurationDays * 1 days;
+        _lockTokens(msg.sender, initialSupply * 10 ** uint256(decimals()), lockDuration);
     }
 
-    function totalSupply() public view override returns (uint256) {
-        return _totalSupply;
-    }
-    
-    function balanceOf(address account) public view override returns (uint256) {
-        return _balances[account];
+    function lockTokens(address account, uint256 amount, uint256 lockDurationDays) public onlyOwner {
+        uint256 lockDuration = lockDurationDays * 1 days;
+        _lockTokens(account, amount, lockDuration);
     }
 
-    function transfer(address recipient, uint256 amount) public override returns (bool) {
-        _transfer(msg.sender, recipient, amount);
-        return true;
+    function unlockTokens() public {
+        uint256 amount = _lockedBalances[msg.sender];
+        require(amount > 0, "No locked tokens");
+        require(block.timestamp >= _releaseTimes[msg.sender], "Tokens are still locked");
+
+        _lockedBalances[msg.sender] = 0;
+        _releaseTimes[msg.sender] = 0;
+
+        _transfer(address(this), msg.sender, amount);
     }
 
-    function allowance(address owner, address spender) public view override returns (uint256) {
-        return _allowances[owner][spender];
+    function transferOwnership(address newOwner) public onlyOwner {
+        _transferOwnership(newOwner);
     }
 
-    function approve(address spender, uint256 amount) public override returns (bool) {
-        _approve(msg.sender, spender, amount);
-        return true;
+    function renounceOwnership() public onlyOwner {
+        _renounceOwnership();
     }
 
-    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
-        _transfer(sender, recipient, amount);
-        _approve(sender, msg.sender, _allowances[sender][msg.sender] - amount);
-        return true;
+    function getLockedTokens(address account) public view returns (uint256 amount, uint256 releaseTime) {
+        return (_lockedBalances[account], _releaseTimes[account]);
     }
 
-    function _transfer(address sender, address recipient, uint256 amount) internal {
-        require(sender != address(0), "Transfer from the zero address");
-        require(recipient != address(0), "Transfer to the zero address");
-        require(_balances[sender] >= amount, "Insufficient balance");
-        
-        _balances[sender] -= amount;
-        _balances[recipient] += amount;
-        emit Transfer(sender, recipient, amount);
-    }
+    function _lockTokens(address account, uint256 amount, uint256 lockDuration) internal {
+        require(account != address(0), "Lock to the zero address");
+        require(amount > 0, "Lock amount must be greater than zero");
 
-    function _approve(address owner, address spender, uint256 amount) internal {
-        require(owner != address(0), "Approve from the zero address");
-        require(spender != address(0), "Approve to the zero address");
-        
-        _allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
-    }
+        uint256 releaseTime = block.timestamp + lockDuration;
+        _lockedBalances[account] = amount;
+        _releaseTimes[account] = releaseTime;
 
-    function _mint(address account, uint256 amount) internal {
-        require(account != address(0), "Mint to the zero address");
-        
-        _totalSupply += amount;
-        _balances[account] += amount;
-        emit Transfer(address(0), account, amount);
+        emit TokensLocked(account, amount, releaseTime);
     }
 }
 `;
