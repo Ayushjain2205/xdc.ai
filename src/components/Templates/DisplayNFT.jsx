@@ -15,7 +15,7 @@ const DisplayNFT = () => {
         <p>Price : $9</p>
 
         <p className="mt-[20px]">
-          Ownership address : TSzW16CE9Zta1TbaKND44b8HkSwpqzNAra
+          Ownership address : 0xCafa93E9985793E2475bD58B9215c21Dbd421fD0
         </p>
       </div>
     </div>
