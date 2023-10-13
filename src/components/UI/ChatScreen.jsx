@@ -199,11 +199,11 @@ const ChatScreen = ({ messages, setMessages }) => {
         ...prevMessages,
         { sender: "user", text: inputValue },
       ]);
-      //dev(inputValue);
+      dev(inputValue);
       //mintNFT();
       //smartContract();
       //graph();
-      walletHealth();
+      //walletHealth();
       setInputValue("");
     }
   };
