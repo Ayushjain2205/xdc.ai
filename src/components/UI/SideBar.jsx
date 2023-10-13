@@ -31,7 +31,7 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[8px]">
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  How to connect Tron Link?
+                  How to connect XDCPay?
                 </span>
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
@@ -41,7 +41,7 @@ const SideBar = ({ onClearMessages }) => {
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  What is TRC 10?
+                  What is XRC 10?
                 </span>
               </div>
             </div>
@@ -116,17 +116,17 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[4px]">
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  Help me generate a TRC 10
+                  Help me generate a XRC 20
                 </span>
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  Help me generate a TRC 20
+                  Help me generate a XRC 721
                 </span>
               </div>
               <div className="flex flex-row items-center h-[36px]">
                 <span className="text-[14px] text-[#7A7A7A] font-medium">
-                  Help me generate a TRC 721
+                  Help me generate a XRC 1155
                 </span>
               </div>
             </div>

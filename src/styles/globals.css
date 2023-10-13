@@ -40,3 +40,7 @@ body {
 .connect-wallet-dev {
   background-color: #16284b !important;
 }
+
+.tw-connected-wallet__balance {
+  display: none !important;
+}
