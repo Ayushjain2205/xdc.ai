@@ -104,13 +104,13 @@ const ChatScreen = ({ messages, setMessages }) => {
 
   const dev = async (userMessage) => {
     const relatedPrompts = [
-      { prompt: "How to connect to tronWeb" },
+      { prompt: "How to connect to XDC Blockchain" },
       { prompt: "How to deploy a smart contract?" },
     ];
     const resources = [
-      { name: "Tron Docs" },
+      { name: "XDC Docs" },
       { name: "Decrypt.co" },
-      { name: "Tron DAO" },
+      { name: "Thirdweb" },
     ];
     try {
       setLoading(true);
