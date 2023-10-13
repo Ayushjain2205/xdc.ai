@@ -158,7 +158,7 @@ const ChatScreen = ({ messages, setMessages }) => {
         ...prevMessages,
         {
           sender: "ai",
-          text: "This is a graphical representation",
+          text: "This is a graphical representation of XDC token performance in the past one month.",
           showResource: false,
           showPrompt: false,
           ChildComponent: Graph,
@@ -201,9 +201,9 @@ const ChatScreen = ({ messages, setMessages }) => {
       ]);
       //dev(inputValue);
       //mintNFT();
-      smartContract();
+      //smartContract();
       //graph();
-      //walletHealth();
+      walletHealth();
       setInputValue("");
     }
   };
