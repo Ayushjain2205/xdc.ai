@@ -88,7 +88,7 @@ const ChatScreen = ({ messages, setMessages }) => {
         ...prevMessages,
         {
           sender: "ai",
-          text: "Creating a TRC-20 token on the TRON blockchain involves writing a smart contract, typically in the Solidity programming language, and then deploying that contract to the TRON blockchain. Below is a simple example of how a basic TRC-20 token might be structured in Solidity. Please note that creating a token and deploying a smart contract onto a blockchain should be done with caution and ideally with the guidance of a blockchain developer, as there are many nuances and potential security issues to be aware of. Here's a simplified version of what a TRC-20 contract might look like:",
+          text: "To create an ERC-20 token called **Boba Coin** for deployment on the XinFin Network (XDC) blockchain, you'll need to write a Solidity smart contract. Below is a basic example of a Solidity smart contract for an ERC-20 token. You can customize and expand upon it as needed:",
           showResource: true,
           showPrompt: true,
           relatedPrompts: relatedPrompts,
